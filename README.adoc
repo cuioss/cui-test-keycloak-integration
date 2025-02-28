@@ -1,85 +1,100 @@
-= cui-java-module-template
+= cui-test-keycloak-integration
 
 == Status
 
-image:https://github.com/cuioss/cui-java-module-template/actions/workflows/maven.yml/badge.svg[Java CI with Maven,link=https://github.com/cuioss/cui-java-module-template/actions/workflows/maven.yml]
+image:https://github.com/cuioss/cui-test-keycloak-integration/actions/workflows/maven.yml/badge.svg[Java CI with Maven,link=https://github.com/cuioss/cui-test-keycloak-integration/actions/workflows/maven.yml]
 image:http://img.shields.io/:license-apache-blue.svg[License,link=http://www.apache.org/licenses/LICENSE-2.0.html]
-image:https://maven-badges.herokuapp.com/maven-central/de.cuioss/cui-java-module-template/badge.svg[Maven Central,link=https://maven-badges.herokuapp.com/maven-central/de.cuioss/cui-java-module-template]
+image:https://maven-badges.herokuapp.com/maven-central/de.cuioss.test/cui-test-keycloak-integration/badge.svg[Maven Central,link=https://maven-badges.herokuapp.com/maven-central/de.cuioss.test/cui-test-keycloak-integration]
 
-https://sonarcloud.io/summary/new_code?id=cuioss_cui-java-module-template[image:https://sonarcloud.io/api/project_badges/measure?project=cuioss_cui-java-module-template&metric=alert_status[Quality
+https://sonarcloud.io/summary/new_code?id=cuioss_cui-test-keycloak-integration[image:https://sonarcloud.io/api/project_badges/measure?project=cuioss_cui-test-keycloak-integration&metric=alert_status[Quality
 Gate Status]]
-image:https://sonarcloud.io/api/project_badges/measure?project=cuioss_cui-java-module-template&metric=ncloc[Lines of Code,link=https://sonarcloud.io/summary/new_code?id=cuioss_cui-java-module-template]
-image:https://sonarcloud.io/api/project_badges/measure?project=cuioss_cui-java-module-template&metric=coverage[Coverage,link=https://sonarcloud.io/summary/new_code?id=cuioss_cui-java-module-template]
+image:https://sonarcloud.io/api/project_badges/measure?project=cuioss_cui-test-keycloak-integration&metric=ncloc[Lines of Code,link=https://sonarcloud.io/summary/new_code?id=cuioss_cui-test-keycloak-integration]
+image:https://sonarcloud.io/api/project_badges/measure?project=cuioss_cui-test-keycloak-integration&metric=coverage[Coverage,link=https://sonarcloud.io/summary/new_code?id=cuioss_cui-test-keycloak-integration]
 
 
-https://cuioss.github.io/cui-java-module-template/about.html[Generated Documentation on github-pages]
+https://cuioss.github.io/cui-test-keycloak-integration/about.html[Generated Documentation on github-pages]
 
 == What is it?
 
-This is a template repository for creating java-modules for cui-open-source-projects. This incorporates all necessary java-structures, including `pom.xml`, sensible project-documentation, 
-an predefined github pipelines. 
+Simple project unifying / configuring integration tests using testcontainers and keycloak. Or to put it another way: Copy-Paste-Prevention.
+Technically, it sits on top of https://github.com/dasniko/testcontainers-keycloak/tree/main[testcontainers-keycloak]
 
-It is meant to be used as copy-paste-template.
+It provides:
 
-=== Maven Coordinates
+* A configured Test-Realm for importing: `oauth_integration_tests`
+* A class with configured constants that are consistent with the test-realm:  link:src/main/java/de/cuioss/test/keycloakit/TestRealm.java[TestRealm]
+* A Baseclass for creating concrete IT-Tests: link:src/main/java/de/cuioss/test/keycloakit/KeycloakITBase.java[KeycloakITBase]
 
-[source,xml]
-----
-    <dependency>
-        <groupId>de.cuioss</groupId>
-        <artifactId>cui-java-module-template</artifactId>
-    </dependency>
-----
+== How to use it
 
-== Customization
+=== Dependencies
 
-=== Names / Keys
+[source, xml]
+<dependency>
+    <groupId>de.cuioss.test</groupId>
+    <artifactId>cui-test-keycloak-integration</artifactId>
+    <scope>test</scope>
+</dependency>
+<!-- Simple implementation that is actually a bridge to juli logging. Used for test-containers slf4j -->
+<dependency>
+    <groupId>org.slf4j</groupId>
+    <artifactId>slf4j-jdk14</artifactId>
+    <scope>test</scope>
+</dependency>
+<!-- Bridge jakarta-commons logging  to slf4j -->
+<dependency>
+    <groupId>org.slf4j</groupId>
+    <artifactId>jcl-over-slf4j</artifactId>
+    <scope>test</scope>
+</dependency>
 
-Create a new Repository by clicking "Use this template"
-Replace all  of `cui-java-module-template` with the new project 'key' / name, e.g. `my-java-module`. Relevant Files are:
+=== Testing
 
-[CAUTION]
-====
-The key must *not* contain spaces. They are used for creating urls as well.
+For usage details see link:src/test/java/de/cuioss/test/keycloakit/KeycloakITBaseTest.java[KeycloakITBaseTest]
 
-====
+== Configuration of the Test-Realm
 
+=== Realm
 
-* `README.adoc` -> the badges on top
-* `pom.xml`
-* `SECURITY.adoc`
-* `.github/project.yml`
-* `src/site/site.xml`
-* `src/site/asciidoc/about.adoc`
+*Name*: `oauth_integration_tests`
 
-=== Credentials
+*Path*: `oauth_integration_tests-realm.json`
 
-Add the necessary credentials to the project: "Settings" -> "Secrets" -> "Actions", as there are: 
+=== User
 
-* `GPG_PASSPHRASE` -> Code Signing
-* `GPG_PRIVATE_KEY` -> Code Signing
-* `OSS_SONATYPE_PASSWORD` -> Deploy to maven-central 
-* `OSS_SONATYPE_USERNAME` -> Deploy to maven-central
-* `PAGES_DEPLOY_TOKEN` -> Deploying the result of maven site to https://cuioss.github.io
-* `SONAR_TOKEN` -> Sonar-Cloud
+*UserName*: `testUser`
 
-They are picked up in the predefined pipeline-configurations:
+*Password*: `drowssap`
 
-* `.github/workflows/maven.yml`
-* `.github/workflows/maven-release.yml`
+*email*: `testUser@example.com`
 
-Ensure that the actions are authorized correctly: Settings > Actions > General > Workflow permissions >  "Read and write permissions" must be selected *not* "Read repository contents permission"
+*First Name*: `Test`
 
-Documentation on how to create a signing key can be found https://github.com/cuioss/cui-parent-pom/blob/master/doc/signing_key.adoc[Documentation at cui-parent-pom] 
+*Last Name*: `User`
 
-A sonar token can be derived from https://sonarcloud.io/account/security
+=== OIDC-Client
 
-=== Further Steps
+*Client ID*: `test_client`
 
-* `pom.xml`: Adjust `name` and `description` elements
-* Adjust `module-info` accordingly
-* `pom.xml`: Adjust property `maven.jar.plugin.automatic.module.name` according to your `module-info`
-* `src/site/asciidoc/about.adoc`: Adjust content
-* Review / Enable the elements under 'Security' Tab
-* Review / Add Collaborators
-* Add (link) the resulting maven-documentation: https://github.com/cuioss/cuioss.github.io/edit/main/README.md[github.io-documentation] 
+*Client Secret*: `yTKslWLtf4giJcWCaoVJ20H8sy6STexM`
+
+== Exporting updated configuration
+
+Tested for keycloak 26.0.1
+
+For a Local Docker-Container You need a mounted persistent volume for the h2-DB:
+
+[source, shell]
+mkdir -m 777 ./keycloak_data
+
+[source, shell]
+docker run -p 8080:8080 -v ./keycloak_data:/opt/keycloak/data/h2 -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin quay.io/keycloak/keycloak:26.0.1 start-dev
+
+Precondition: Local Docker-Container, with mounted persistent volume for h2
+
+Stop the keycloak if it is running.
+
+Start the keycloak exporter, as below:
+
+[source, shell]
+docker run --rm --name keycloak_exporter -v ./keycloak_data:/opt/keycloak/data/h2 -e KC_DB_PASSWORD=admin -e KC_DB_USERNAME=admin quay.io/keycloak/keycloak:26.0.1 export --realm oauth_integration_tests --dir /opt/keycloak/data/h2/export --users realm_file
