@@ -32,7 +32,7 @@
     </issueManagement>
     <properties>
         <maven.jar.plugin.automatic.module.name>de.cuioss.test.keycloakit</maven.jar.plugin.automatic.module.name>
-        <version.testcontainers-keycloak>3.6.0</version.testcontainers-keycloak>
+        <version.testcontainers-keycloak>3.7.0</version.testcontainers-keycloak>
         <version.testcontainer>1.21.0</version.testcontainer>
         <version.cui.parent>0.9.9.5</version.cui.parent>
         <!-- Fixes the problem:
