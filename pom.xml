@@ -33,7 +33,7 @@
     <properties>
         <maven.jar.plugin.automatic.module.name>de.cuioss.test.keycloakit</maven.jar.plugin.automatic.module.name>
         <version.testcontainers-keycloak>3.6.0</version.testcontainers-keycloak>
-        <version.testcontainer>1.20.6</version.testcontainer>
+        <version.testcontainer>1.21.0</version.testcontainer>
         <version.cui.parent>0.9.9.5</version.cui.parent>
         <!-- Fixes the problem:
     Error: [ERROR] Failed to execute goal org.apache.maven.plugins:maven-site-plugin:3.21.0:site (default-site) on project portal.authentication.token: Failed to render site: Error generating maven-javadoc-plugin:3.11.1:javadoc report: Unable to derive module descriptor for /home/runner/.m2/repository/org/jboss/shrinkwrap/shrinkwrap-impl-base/2.0.0-beta-2/shrinkwrap-impl-base-2.0.0-beta-2.jar: Provider class implementingClassName=org.jboss.shrinkwrap.impl.base.importer.zip.ZipImporterImpl not in module -> [Help 1]-->
