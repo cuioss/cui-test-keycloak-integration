@@ -4,7 +4,7 @@
     <parent>
         <groupId>de.cuioss</groupId>
         <artifactId>cui-java-parent</artifactId>
-        <version>0.9.9.6</version>
+        <version>1.1.0</version>
         <relativePath />
     </parent>
     <groupId>de.cuioss.test</groupId>
@@ -34,7 +34,7 @@
         <maven.jar.plugin.automatic.module.name>de.cuioss.test.keycloakit</maven.jar.plugin.automatic.module.name>
         <version.testcontainers-keycloak>3.8.0</version.testcontainers-keycloak>
         <version.testcontainer>1.21.3</version.testcontainer>
-        <version.cui.parent>0.9.9.6</version.cui.parent>
+        <version.cui.parent>1.1.0</version.cui.parent>
         <!-- Fixes the problem:
     Error: [ERROR] Failed to execute goal org.apache.maven.plugins:maven-site-plugin:3.21.0:site (default-site) on project portal.authentication.token: Failed to render site: Error generating maven-javadoc-plugin:3.11.1:javadoc report: Unable to derive module descriptor for /home/runner/.m2/repository/org/jboss/shrinkwrap/shrinkwrap-impl-base/2.0.0-beta-2/shrinkwrap-impl-base-2.0.0-beta-2.jar: Provider class implementingClassName=org.jboss.shrinkwrap.impl.base.importer.zip.ZipImporterImpl not in module -> [Help 1]-->
         <maven.javadoc.plugin.legacyMode>true</maven.javadoc.plugin.legacyMode>
