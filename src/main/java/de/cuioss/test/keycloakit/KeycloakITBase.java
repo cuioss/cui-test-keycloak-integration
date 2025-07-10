@@ -37,7 +37,8 @@ public class KeycloakITBase {
         public static final String ID_TOKEN = "id_token";
     }
 
-    @Container KeycloakContainer keycloak = new KeycloakContainer().withRealmImportFile(TestRealm.REALM_CONFIGURATION).
+    @Container
+    KeycloakContainer keycloak = new KeycloakContainer().withRealmImportFile(TestRealm.REALM_CONFIGURATION).
             withAdminUsername(TestRealm.Administrator.NAME).withAdminPassword(TestRealm.Administrator.PASSWORD)
             .useTls();
 
