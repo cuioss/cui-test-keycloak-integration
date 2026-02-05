@@ -67,3 +67,15 @@ The realm JSON (`oauth_integration_tests-realm.json`) is in `src/main/resources/
 - `TestRealm.java` is excluded from Sonar coverage via `sonar.coverage.exclusions` (constants-only class)
 - EditorConfig: 4-space indentation, LF line endings, UTF-8
 - Apache License 2.0 headers on all source files
+
+## Git Workflow
+
+This repository has branch protection on `main`. Direct pushes to `main` are never allowed. Always use this workflow:
+
+1. Create a feature branch: `git checkout -b <branch-name>`
+2. Commit changes: `git add <files> && git commit -m "<message>"`
+3. Push the branch: `git push -u origin <branch-name>`
+4. Create a PR: `gh pr create --repo cuioss/cui-test-keycloak-integration --head <branch-name> --base main --title "<title>" --body "<body>"`
+5. Enable auto-merge: `gh pr merge --repo cuioss/cui-test-keycloak-integration --auto --squash --delete-branch`
+6. Wait for merge (check every ~60s): `while gh pr view --repo cuioss/cui-test-keycloak-integration --json state -q '.state' | grep -q OPEN; do sleep 60; done`
+7. Return to main: `git checkout main && git pull`
