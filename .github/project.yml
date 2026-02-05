@@ -1,6 +1,28 @@
 name: cui-test-keycloak-integration
-pages-reference: cui-test-keycloak-integration
-sonar-project-key: cuioss_cui-test-keycloak-integration
+description: Simple project for integration tests using testcontainers and keycloak
+
 release:
   current-version: 1.1.0
   next-version: 1.2.0-SNAPSHOT
+  create-github-release: true
+
+maven-build:
+  java-versions: '["21","25"]'
+  java-version: '21'
+  enable-snapshot-deploy: true
+  maven-profiles-snapshot: 'release-snapshot,javadoc'
+  maven-profiles-release: 'release,javadoc'
+  npm-cache: false
+
+sonar:
+  project-key: cuioss_cui-test-keycloak-integration
+  enabled: true
+  skip-on-dependabot: true
+
+pages:
+  reference: cui-test-keycloak-integration
+  deploy-at-release: true
+
+github-automation:
+  auto-merge-build-versions: true
+  auto-merge-build-timeout: 300
