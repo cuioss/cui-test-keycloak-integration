@@ -32,8 +32,8 @@
     </issueManagement>
     <properties>
         <maven.jar.plugin.automatic.module.name>de.cuioss.test.keycloakit</maven.jar.plugin.automatic.module.name>
-        <version.testcontainers-keycloak>3.8.0</version.testcontainers-keycloak>
-        <version.testcontainer>1.21.4</version.testcontainer>
+        <version.testcontainers-keycloak>4.1.1</version.testcontainers-keycloak>
+        <version.testcontainer>2.0.3</version.testcontainer>
         <!-- Fixes the problem:
     Error: [ERROR] Failed to execute goal org.apache.maven.plugins:maven-site-plugin:3.21.0:site (default-site) on project portal.authentication.token: Failed to render site: Error generating maven-javadoc-plugin:3.11.1:javadoc report: Unable to derive module descriptor for /home/runner/.m2/repository/org/jboss/shrinkwrap/shrinkwrap-impl-base/2.0.0-beta-2/shrinkwrap-impl-base-2.0.0-beta-2.jar: Provider class implementingClassName=org.jboss.shrinkwrap.impl.base.importer.zip.ZipImporterImpl not in module -> [Help 1]-->
         <maven.javadoc.plugin.legacyMode>true</maven.javadoc.plugin.legacyMode>
@@ -56,7 +56,7 @@
             </dependency>
             <dependency>
                 <groupId>org.testcontainers</groupId>
-                <artifactId>junit-jupiter</artifactId>
+                <artifactId>testcontainers-junit-jupiter</artifactId>
                 <version>${version.testcontainer}</version>
                 <scope>test</scope>
             </dependency>
@@ -93,7 +93,7 @@
         </dependency>
         <dependency>
             <groupId>org.testcontainers</groupId>
-            <artifactId>junit-jupiter</artifactId>
+            <artifactId>testcontainers-junit-jupiter</artifactId>
             <!-- See testcontainers-keycloak-->
             <scope>compile</scope>
         </dependency>
