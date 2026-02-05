@@ -39,7 +39,7 @@
         <maven.javadoc.plugin.legacyMode>true</maven.javadoc.plugin.legacyMode>
         <!-- For some reason, the fix above will be ignored by the mvn-site-plugin-->
         <maven.site.plugin.generateReports>false</maven.site.plugin.generateReports>
-        <sonar.coverage.exclusions>src/main/java/de/cuioss/portal/test/keycloakit/TestRealm.java
+        <sonar.coverage.exclusions>src/main/java/de/cuioss/test/keycloakit/TestRealm.java
         </sonar.coverage.exclusions>
     </properties>
     <dependencyManagement>
